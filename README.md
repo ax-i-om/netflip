@@ -2,6 +2,7 @@
 
 # Linkbrute
 Not very pretty code -> This project is just a proof of concept.
+**THIS PROJECT IS NO LONGER MAINTAINED**
 
 ### Brute force links on paste sites.
 <img src="./images/demo.png">
