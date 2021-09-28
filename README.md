@@ -4,7 +4,8 @@
   <p align="center">
     <a><img src="https://img.shields.io/badge/license-MIT-green.svg" alt="s"></a>
     <a><img src="https://img.shields.io/badge/version-0.2.1-blue.svg" alt="s"></a><br>
-    Scrape paste sites for sensitive information.<br><br>
+    Scrape paste sites for sensitive information.<br>
+  <a href="https://github.com/maraudery/netflip/releases/latest">Download</a><br><br>
     <a><img src="./demo.png" width="800em"></a><br><br>
     <strong>DISCLAIMER:</strong> It's the end user's responsibility to obey all applicable local, state, and federal laws. Developers assume no liability and are not responsible for any misuse or damage caused by this program. By using netflip, you agree to the previous statements.
   </p><br>
