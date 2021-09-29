@@ -112,13 +112,71 @@ namespace netflip
 
         private void PasteeButton_Click(object sender, EventArgs e)
         {
+            try
+            {
+                int threads = int.Parse(ThreadField.Text);
+                PasteeLaunch(threads);
+                peflag = false;
+            }
+            catch (Exception ee)
+            {
+                MessageBox.Show("An error has occured. View the error message below: \n\n" + ee.ToString(), "Netflip", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void PasteallButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int threads = int.Parse(ThreadField.Text);
+                PasteallLaunch(threads);
+                paflag = false;
+            }
+            catch (Exception ee)
+            {
+                MessageBox.Show("An error has occured. View the error message below: \n\n" + ee.ToString(), "Netflip", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        
+
+        private void PasteinButton_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                int threads = int.Parse(ThreadField.Text);
+                PasteinLaunch(threads);
+                piflag = false;
+            }
+            catch (Exception ee)
+            {
+                MessageBox.Show("An error has occured. View the error message below: \n\n" + ee.ToString(), "Netflip", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void RentryButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int threads = int.Parse(ThreadField.Text);
+                RentryLaunch(threads);
+                reflag = false;
+            }
+            catch (Exception ee)
+            {
+                MessageBox.Show("An error has occured. View the error message below: \n\n" + ee.ToString(), "Netflip", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void PasteeLaunch(int threads)
+        {
             if (peflag)
             {
                 peflag = false;
             }
             else
             {
-                for (int i = 0; i < 5; i++)
+                for (int i = 0; i < threads; i++)
                 {
                     new Thread(() =>
                     {
@@ -141,6 +199,7 @@ namespace netflip
                                 }));
                                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
                                 {
+                                    PasteeButton.FlatAppearance.BorderColor = Color.FromArgb(1, 11, 232, 129);
                                     if ((!String.IsNullOrWhiteSpace(KeywordField.Text) && response.Content.ToLower().Contains(KeywordField.Text.ToLower())) || String.IsNullOrWhiteSpace(KeywordField.Text))
                                     {
                                         previewOut.Invoke(new Action(() =>
@@ -160,6 +219,11 @@ namespace netflip
                                         }));
                                     }
                                 }
+                                else if (response.StatusCode == System.Net.HttpStatusCode.Forbidden)
+                                {
+                                    PasteeButton.FlatAppearance.BorderColor = Color.Red;
+                                    peflag = false;
+                                }
                             }
                             catch
                             {
@@ -171,7 +235,7 @@ namespace netflip
             }
         }
 
-        private void PasteallButton_Click(object sender, EventArgs e)
+        private void PasteallLaunch(int threads)
         {
             if (paflag)
             {
@@ -179,7 +243,7 @@ namespace netflip
             }
             else
             {
-                for (int i = 0; i < 5; i++)
+                for (int i = 0; i < threads; i++)
                 {
                     new Thread(() =>
                     {
@@ -202,6 +266,7 @@ namespace netflip
                                 }));
                                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
                                 {
+                                    PasteallButton.FlatAppearance.BorderColor = Color.FromArgb(1, 11, 232, 129);
                                     if ((!String.IsNullOrWhiteSpace(KeywordField.Text) && response.Content.ToLower().Contains(KeywordField.Text.ToLower())) || String.IsNullOrWhiteSpace(KeywordField.Text))
                                     {
                                         previewOut.Invoke(new Action(() =>
@@ -221,127 +286,10 @@ namespace netflip
                                         }));
                                     }
                                 }
-                            }
-                            catch
-                            {
-                                // Ignore
-                            }
-                        }
-                    }).Start();
-                }
-            }
-        }
-
-        private void PasteinButton_Click_1(object sender, EventArgs e)
-        {
-            if (piflag)
-            {
-                piflag = false;
-            }
-            else
-            {
-                for (int i = 0; i < 5; i++)
-                {
-                    new Thread(() =>
-                    {
-                        piflag = true;
-                        while (piflag)
-                        {
-                            try
-                            {
-                                var link = "https://paste.in/raw/" + GenString(6, true, true, true);
-                                var client = new RestClient(link)
+                                else if (response.StatusCode == System.Net.HttpStatusCode.Forbidden)
                                 {
-                                    Timeout = -1
-                                };
-                                var request = new RestRequest(Method.GET);
-                                IRestResponse response = client.Execute(request);
-                                checkingOut.Invoke(new Action(() =>
-                                {
-                                    checkingOut.ResetText();
-                                    checkingOut.AppendText("Checking: " + link);
-                                }));
-                                if (response.StatusCode == System.Net.HttpStatusCode.OK)
-                                {
-                                    if ((!String.IsNullOrWhiteSpace(KeywordField.Text) && response.Content.ToLower().Contains(KeywordField.Text.ToLower())) || String.IsNullOrWhiteSpace(KeywordField.Text))
-                                    {
-                                        previewOut.Invoke(new Action(() =>
-                                        {
-                                            previewOut.ResetText();
-                                            previewOut.AppendText(response.Content);
-                                        }));
-                                        workingLinks.Invoke(new Action(() =>
-                                        {
-                                            workingLinks.AppendText(link);
-                                            workingLinks.AppendText(Environment.NewLine);
-                                        }));
-                                        previewLinkOut.Invoke(new Action(() =>
-                                        {
-                                            previewLinkOut.ResetText();
-                                            previewLinkOut.AppendText("Previewing: " + link);
-                                        }));
-                                    }
-                                }
-                            }
-                            catch
-                            {
-                                // Ignore
-                            }
-                        }
-                    }).Start();
-                }
-            }
-        }
-
-        private void RentryButton_Click(object sender, EventArgs e)
-        {
-            if (reflag)
-            {
-                reflag = false;
-            }
-            else
-            {
-                for (int i = 0; i < 5; i++)
-                {
-                    new Thread(() =>
-                    {
-                        reflag = true;
-                        while (reflag)
-                        {
-                            try
-                            {
-                                var link = "https://rentry.co/" + GenString(5, false, true, true) + "/raw";
-                                var client = new RestClient(link)
-                                {
-                                    Timeout = -1
-                                };
-                                var request = new RestRequest(Method.GET);
-                                IRestResponse response = client.Execute(request);
-                                checkingOut.Invoke(new Action(() =>
-                                {
-                                    checkingOut.ResetText();
-                                    checkingOut.AppendText("Checking: " + link);
-                                }));
-                                if (response.StatusCode == System.Net.HttpStatusCode.OK)
-                                {
-                                    if ((!String.IsNullOrWhiteSpace(KeywordField.Text) && response.Content.ToLower().Contains(KeywordField.Text.ToLower())) || String.IsNullOrWhiteSpace(KeywordField.Text))
-                                    {
-                                        previewOut.Invoke(new Action(() =>
-                                        {
-                                            previewOut.ResetText();
-                                            previewOut.AppendText(response.Content);
-                                        }));
-                                        workingLinks.Invoke(new Action(() =>
-                                        {
-                                            workingLinks.AppendText(link);
-                                            workingLinks.AppendText(Environment.NewLine);
-                                        }));
-                                        previewLinkOut.Invoke(new Action(() =>
-                                        {
-                                            previewLinkOut.ResetText();
-                                            previewLinkOut.AppendText("Previewing: " + link);
-                                        }));
-                                    }
+                                    PasteallButton.FlatAppearance.BorderColor = Color.Red;
+                                    paflag = false;
                                 }
                             }
                             catch
@@ -365,6 +313,157 @@ namespace netflip
             KeywordField.ResetText();
             previewLinkOut.Text = "Previewing: ";
             checkingOut.Text = "Checking: ";
+        }
+
+        private void RentryLaunch(int threads)
+        {
+            if (reflag)
+            {
+                reflag = false;
+            }
+            else
+            {
+                for (int i = 0; i < threads; i++)
+                {
+                    new Thread(() =>
+                    {
+                        reflag = true;
+                        while (reflag)
+                        {
+                            try
+                            {
+                                var link = "https://rentry.co/" + GenString(5, false, true, true) + "/raw";
+                                var client = new RestClient(link)
+                                {
+                                    Timeout = -1
+                                };
+                                var request = new RestRequest(Method.GET);
+                                IRestResponse response = client.Execute(request);
+                                checkingOut.Invoke(new Action(() =>
+                                {
+                                    checkingOut.ResetText();
+                                    checkingOut.AppendText("Checking: " + link);
+                                }));
+                                if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                                {
+                                    RentryButton.FlatAppearance.BorderColor = Color.FromArgb(1, 11, 232, 129);
+                                    if ((!String.IsNullOrWhiteSpace(KeywordField.Text) && response.Content.ToLower().Contains(KeywordField.Text.ToLower())) || String.IsNullOrWhiteSpace(KeywordField.Text))
+                                    {
+                                        previewOut.Invoke(new Action(() =>
+                                        {
+                                            previewOut.ResetText();
+                                            previewOut.AppendText(response.Content);
+                                        }));
+                                        workingLinks.Invoke(new Action(() =>
+                                        {
+                                            workingLinks.AppendText(link);
+                                            workingLinks.AppendText(Environment.NewLine);
+                                        }));
+                                        previewLinkOut.Invoke(new Action(() =>
+                                        {
+                                            previewLinkOut.ResetText();
+                                            previewLinkOut.AppendText("Previewing: " + link);
+                                        }));
+                                    }
+                                }
+                                else if (response.StatusCode == System.Net.HttpStatusCode.Forbidden)
+                                {
+                                    RentryButton.FlatAppearance.BorderColor = Color.Red;
+                                    reflag = false;
+                                }
+                            }
+                            catch
+                            {
+                                // Ignore
+                            }
+                        }
+                    }).Start();
+                }
+            }
+        }
+
+        private void PasteinLaunch(int threads)
+        {
+            if (piflag)
+            {
+                piflag = false;
+            }
+            else
+            {
+                for (int i = 0; i < threads; i++)
+                {
+                    new Thread(() =>
+                    {
+                        piflag = true;
+                        while (piflag)
+                        {
+                            try
+                            {
+                                var link = "https://paste.in/raw/" + GenString(6, true, true, true);
+                                var client = new RestClient(link)
+                                {
+                                    Timeout = -1
+                                };
+                                var request = new RestRequest(Method.GET);
+                                IRestResponse response = client.Execute(request);
+                                checkingOut.Invoke(new Action(() =>
+                                {
+                                    checkingOut.ResetText();
+                                    checkingOut.AppendText("Checking: " + link);
+                                }));
+                                if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                                {
+                                    PasteinButton.FlatAppearance.BorderColor = Color.FromArgb(1, 11, 232, 129);
+                                    if ((!String.IsNullOrWhiteSpace(KeywordField.Text) && response.Content.ToLower().Contains(KeywordField.Text.ToLower())) || String.IsNullOrWhiteSpace(KeywordField.Text))
+                                    {
+                                        previewOut.Invoke(new Action(() =>
+                                        {
+                                            previewOut.ResetText();
+                                            previewOut.AppendText(response.Content);
+                                        }));
+                                        workingLinks.Invoke(new Action(() =>
+                                        {
+                                            workingLinks.AppendText(link);
+                                            workingLinks.AppendText(Environment.NewLine);
+                                        }));
+                                        previewLinkOut.Invoke(new Action(() =>
+                                        {
+                                            previewLinkOut.ResetText();
+                                            previewLinkOut.AppendText("Previewing: " + link);
+                                        }));
+                                    }
+                                } else if (response.StatusCode == System.Net.HttpStatusCode.Forbidden)
+                                {
+                                    PasteinButton.FlatAppearance.BorderColor = Color.Red;
+                                    piflag = false;
+                                }
+                            }
+                            catch
+                            {
+                                // Ignore
+                            }
+                        }
+                    }).Start();
+                }
+            }
+        }
+
+        private void ThreadField_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
+
+        private void HelpButton_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("1. Make sure all processes are stopped.\n2. Set how many threads you want to launch.\n3. Set a keyword to filter for.\n4. Select which paste sites to scrape from.", "Netflip", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void ThreadField_MouseClick(object sender, MouseEventArgs e)
+        {
+            reflag = false;
+            paflag = false;
+            piflag = false;
+            peflag = false;
         }
     }
 }
