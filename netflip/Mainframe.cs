@@ -141,7 +141,7 @@ namespace netflip
                                 }));
                                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
                                 {
-                                    if ((MegaRadio.Checked && response.Content.Contains("mega.nz")) || AllRadio.Checked)
+                                    if ((!String.IsNullOrWhiteSpace(KeywordField.Text) && response.Content.ToLower().Contains(KeywordField.Text.ToLower())) || String.IsNullOrWhiteSpace(KeywordField.Text))
                                     {
                                         previewOut.Invoke(new Action(() =>
                                         {
@@ -202,7 +202,7 @@ namespace netflip
                                 }));
                                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
                                 {
-                                    if ((MegaRadio.Checked && response.Content.Contains("mega.nz")) || AllRadio.Checked)
+                                    if ((!String.IsNullOrWhiteSpace(KeywordField.Text) && response.Content.ToLower().Contains(KeywordField.Text.ToLower())) || String.IsNullOrWhiteSpace(KeywordField.Text))
                                     {
                                         previewOut.Invoke(new Action(() =>
                                         {
@@ -263,7 +263,7 @@ namespace netflip
                                 }));
                                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
                                 {
-                                    if ((MegaRadio.Checked && response.Content.Contains("mega.nz")) || AllRadio.Checked)
+                                    if ((!String.IsNullOrWhiteSpace(KeywordField.Text) && response.Content.ToLower().Contains(KeywordField.Text.ToLower())) || String.IsNullOrWhiteSpace(KeywordField.Text))
                                     {
                                         previewOut.Invoke(new Action(() =>
                                         {
@@ -324,7 +324,7 @@ namespace netflip
                                 }));
                                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
                                 {
-                                    if ((MegaRadio.Checked && response.Content.Contains("mega.nz")) || AllRadio.Checked)
+                                    if ((!String.IsNullOrWhiteSpace(KeywordField.Text) && response.Content.ToLower().Contains(KeywordField.Text.ToLower())) || String.IsNullOrWhiteSpace(KeywordField.Text))
                                     {
                                         previewOut.Invoke(new Action(() =>
                                         {
@@ -362,9 +362,9 @@ namespace netflip
             peflag = false;
             previewOut.ResetText();
             workingLinks.ResetText();
+            KeywordField.ResetText();
             previewLinkOut.Text = "Previewing: ";
             checkingOut.Text = "Checking: ";
-            AllRadio.Checked = true;
         }
     }
 }

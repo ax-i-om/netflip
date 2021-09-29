@@ -3,7 +3,7 @@
   <h1 align="center">Netflip</h1>
   <p align="center">
     <a><img src="https://img.shields.io/badge/license-MIT-green.svg" alt="s"></a>
-    <a><img src="https://img.shields.io/badge/version-0.2.1-blue.svg" alt="s"></a><br>
+    <a><img src="https://img.shields.io/badge/version-0.2.2-blue.svg" alt="s"></a><br>
     Scrape paste sites for sensitive information.<br>
   <a href="https://github.com/maraudery/netflip/releases/latest">Download</a><br><br>
     <a><img src="./demo.png" width="800em"></a><br>
