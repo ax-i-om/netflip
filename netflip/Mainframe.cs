@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -200,23 +201,78 @@ namespace netflip
                                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
                                 {
                                     PasteeButton.FlatAppearance.BorderColor = Color.FromArgb(1, 11, 232, 129);
-                                    if ((!String.IsNullOrWhiteSpace(KeywordField.Text) && response.Content.ToLower().Contains(KeywordField.Text.ToLower())) || String.IsNullOrWhiteSpace(KeywordField.Text))
+                                    if (RadioText.Checked)
                                     {
-                                        previewOut.Invoke(new Action(() =>
+
+                                        if ((!String.IsNullOrWhiteSpace(KeywordField.Text) && response.Content.ToLower().Contains(KeywordField.Text.ToLower())) || String.IsNullOrWhiteSpace(KeywordField.Text))
                                         {
-                                            previewOut.ResetText();
-                                            previewOut.AppendText(response.Content);
-                                        }));
-                                        workingLinks.Invoke(new Action(() =>
+                                            previewOut.Invoke(new Action(() =>
+                                            {
+                                                previewOut.ResetText();
+                                                previewOut.AppendText(response.Content);
+                                            }));
+                                            workingLinks.Invoke(new Action(() =>
+                                            {
+                                                workingLinks.AppendText(link);
+                                                workingLinks.AppendText(Environment.NewLine);
+                                            }));
+                                            previewLinkOut.Invoke(new Action(() =>
+                                            {
+                                                previewLinkOut.ResetText();
+                                                previewLinkOut.AppendText("Previewing: " + link);
+                                            }));
+                                        }
+                                    }
+                                    else if (RadioReg.Checked)
+                                    {
+                                        if (String.IsNullOrWhiteSpace(KeywordField.Text))
                                         {
-                                            workingLinks.AppendText(link);
-                                            workingLinks.AppendText(Environment.NewLine);
-                                        }));
-                                        previewLinkOut.Invoke(new Action(() =>
+                                            previewOut.Invoke(new Action(() =>
+                                            {
+                                                previewOut.ResetText();
+                                                previewOut.AppendText(response.Content);
+                                            }));
+                                            workingLinks.Invoke(new Action(() =>
+                                            {
+                                                workingLinks.AppendText(link);
+                                                workingLinks.AppendText(Environment.NewLine);
+                                            }));
+                                            previewLinkOut.Invoke(new Action(() =>
+                                            {
+                                                previewLinkOut.ResetText();
+                                                previewLinkOut.AppendText("Previewing: " + link);
+                                            }));
+                                        }
+                                        else
                                         {
-                                            previewLinkOut.ResetText();
-                                            previewLinkOut.AppendText("Previewing: " + link);
-                                        }));
+                                            try
+                                            {
+                                                if (Regex.IsMatch(response.Content, @KeywordField.Text))
+                                                {
+                                                    previewOut.Invoke(new Action(() =>
+                                                    {
+                                                        previewOut.ResetText();
+                                                        previewOut.AppendText(response.Content);
+                                                    }));
+                                                    workingLinks.Invoke(new Action(() =>
+                                                    {
+                                                        workingLinks.AppendText(link);
+                                                        workingLinks.AppendText(Environment.NewLine);
+                                                    }));
+                                                    previewLinkOut.Invoke(new Action(() =>
+                                                    {
+                                                        previewLinkOut.ResetText();
+                                                        previewLinkOut.AppendText("Previewing: " + link);
+                                                    }));
+                                                }
+                                            }
+                                            catch (Exception pasteeexpr)
+                                            {
+                                                MessageBox.Show("An error has occured. View the error message below: \n\n" + pasteeexpr.ToString(), "Netflip", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                peflag = false;
+                                            }
+                                        }
+
                                     }
                                 }
                                 else if (response.StatusCode == System.Net.HttpStatusCode.Forbidden)
@@ -267,23 +323,78 @@ namespace netflip
                                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
                                 {
                                     PasteallButton.FlatAppearance.BorderColor = Color.FromArgb(1, 11, 232, 129);
-                                    if ((!String.IsNullOrWhiteSpace(KeywordField.Text) && response.Content.ToLower().Contains(KeywordField.Text.ToLower())) || String.IsNullOrWhiteSpace(KeywordField.Text))
+                                    if (RadioText.Checked)
                                     {
-                                        previewOut.Invoke(new Action(() =>
+
+                                        if ((!String.IsNullOrWhiteSpace(KeywordField.Text) && response.Content.ToLower().Contains(KeywordField.Text.ToLower())) || String.IsNullOrWhiteSpace(KeywordField.Text))
                                         {
-                                            previewOut.ResetText();
-                                            previewOut.AppendText(response.Content);
-                                        }));
-                                        workingLinks.Invoke(new Action(() =>
+                                            previewOut.Invoke(new Action(() =>
+                                            {
+                                                previewOut.ResetText();
+                                                previewOut.AppendText(response.Content);
+                                            }));
+                                            workingLinks.Invoke(new Action(() =>
+                                            {
+                                                workingLinks.AppendText(link);
+                                                workingLinks.AppendText(Environment.NewLine);
+                                            }));
+                                            previewLinkOut.Invoke(new Action(() =>
+                                            {
+                                                previewLinkOut.ResetText();
+                                                previewLinkOut.AppendText("Previewing: " + link);
+                                            }));
+                                        }
+                                    }
+                                    else if (RadioReg.Checked)
+                                    {
+                                        if (String.IsNullOrWhiteSpace(KeywordField.Text))
                                         {
-                                            workingLinks.AppendText(link);
-                                            workingLinks.AppendText(Environment.NewLine);
-                                        }));
-                                        previewLinkOut.Invoke(new Action(() =>
+                                            previewOut.Invoke(new Action(() =>
+                                            {
+                                                previewOut.ResetText();
+                                                previewOut.AppendText(response.Content);
+                                            }));
+                                            workingLinks.Invoke(new Action(() =>
+                                            {
+                                                workingLinks.AppendText(link);
+                                                workingLinks.AppendText(Environment.NewLine);
+                                            }));
+                                            previewLinkOut.Invoke(new Action(() =>
+                                            {
+                                                previewLinkOut.ResetText();
+                                                previewLinkOut.AppendText("Previewing: " + link);
+                                            }));
+                                        }
+                                        else
                                         {
-                                            previewLinkOut.ResetText();
-                                            previewLinkOut.AppendText("Previewing: " + link);
-                                        }));
+                                            try
+                                            {
+                                                if (Regex.IsMatch(response.Content, @KeywordField.Text))
+                                                {
+                                                    previewOut.Invoke(new Action(() =>
+                                                    {
+                                                        previewOut.ResetText();
+                                                        previewOut.AppendText(response.Content);
+                                                    }));
+                                                    workingLinks.Invoke(new Action(() =>
+                                                    {
+                                                        workingLinks.AppendText(link);
+                                                        workingLinks.AppendText(Environment.NewLine);
+                                                    }));
+                                                    previewLinkOut.Invoke(new Action(() =>
+                                                    {
+                                                        previewLinkOut.ResetText();
+                                                        previewLinkOut.AppendText("Previewing: " + link);
+                                                    }));
+                                                }
+                                            }
+                                            catch (Exception pasteallexpr)
+                                            {
+                                                MessageBox.Show("An error has occured. View the error message below: \n\n" + pasteallexpr.ToString(), "Netflip", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                paflag = false;
+                                            }
+                                        }
+
                                     }
                                 }
                                 else if (response.StatusCode == System.Net.HttpStatusCode.Forbidden)
@@ -347,23 +458,78 @@ namespace netflip
                                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
                                 {
                                     RentryButton.FlatAppearance.BorderColor = Color.FromArgb(1, 11, 232, 129);
-                                    if ((!String.IsNullOrWhiteSpace(KeywordField.Text) && response.Content.ToLower().Contains(KeywordField.Text.ToLower())) || String.IsNullOrWhiteSpace(KeywordField.Text))
+                                    if (RadioText.Checked)
                                     {
-                                        previewOut.Invoke(new Action(() =>
+
+                                        if ((!String.IsNullOrWhiteSpace(KeywordField.Text) && response.Content.ToLower().Contains(KeywordField.Text.ToLower())) || String.IsNullOrWhiteSpace(KeywordField.Text))
                                         {
-                                            previewOut.ResetText();
-                                            previewOut.AppendText(response.Content);
-                                        }));
-                                        workingLinks.Invoke(new Action(() =>
+                                            previewOut.Invoke(new Action(() =>
+                                            {
+                                                previewOut.ResetText();
+                                                previewOut.AppendText(response.Content);
+                                            }));
+                                            workingLinks.Invoke(new Action(() =>
+                                            {
+                                                workingLinks.AppendText(link);
+                                                workingLinks.AppendText(Environment.NewLine);
+                                            }));
+                                            previewLinkOut.Invoke(new Action(() =>
+                                            {
+                                                previewLinkOut.ResetText();
+                                                previewLinkOut.AppendText("Previewing: " + link);
+                                            }));
+                                        }
+                                    }
+                                    else if (RadioReg.Checked)
+                                    {
+                                        if (String.IsNullOrWhiteSpace(KeywordField.Text))
                                         {
-                                            workingLinks.AppendText(link);
-                                            workingLinks.AppendText(Environment.NewLine);
-                                        }));
-                                        previewLinkOut.Invoke(new Action(() =>
+                                            previewOut.Invoke(new Action(() =>
+                                            {
+                                                previewOut.ResetText();
+                                                previewOut.AppendText(response.Content);
+                                            }));
+                                            workingLinks.Invoke(new Action(() =>
+                                            {
+                                                workingLinks.AppendText(link);
+                                                workingLinks.AppendText(Environment.NewLine);
+                                            }));
+                                            previewLinkOut.Invoke(new Action(() =>
+                                            {
+                                                previewLinkOut.ResetText();
+                                                previewLinkOut.AppendText("Previewing: " + link);
+                                            }));
+                                        }
+                                        else
                                         {
-                                            previewLinkOut.ResetText();
-                                            previewLinkOut.AppendText("Previewing: " + link);
-                                        }));
+                                            try
+                                            {
+                                                if (Regex.IsMatch(response.Content, @KeywordField.Text))
+                                                {
+                                                    previewOut.Invoke(new Action(() =>
+                                                    {
+                                                        previewOut.ResetText();
+                                                        previewOut.AppendText(response.Content);
+                                                    }));
+                                                    workingLinks.Invoke(new Action(() =>
+                                                    {
+                                                        workingLinks.AppendText(link);
+                                                        workingLinks.AppendText(Environment.NewLine);
+                                                    }));
+                                                    previewLinkOut.Invoke(new Action(() =>
+                                                    {
+                                                        previewLinkOut.ResetText();
+                                                        previewLinkOut.AppendText("Previewing: " + link);
+                                                    }));
+                                                }
+                                            }
+                                            catch (Exception rentryexpr)
+                                            {
+                                                MessageBox.Show("An error has occured. View the error message below: \n\n" + rentryexpr.ToString(), "Netflip", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                reflag = false;
+                                            }
+                                        }
+
                                     }
                                 }
                                 else if (response.StatusCode == System.Net.HttpStatusCode.Forbidden)
@@ -414,25 +580,81 @@ namespace netflip
                                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
                                 {
                                     PasteinButton.FlatAppearance.BorderColor = Color.FromArgb(1, 11, 232, 129);
-                                    if ((!String.IsNullOrWhiteSpace(KeywordField.Text) && response.Content.ToLower().Contains(KeywordField.Text.ToLower())) || String.IsNullOrWhiteSpace(KeywordField.Text))
+                                    if (RadioText.Checked)
                                     {
-                                        previewOut.Invoke(new Action(() =>
+
+                                        if ((!String.IsNullOrWhiteSpace(KeywordField.Text) && response.Content.ToLower().Contains(KeywordField.Text.ToLower())) || String.IsNullOrWhiteSpace(KeywordField.Text))
                                         {
-                                            previewOut.ResetText();
-                                            previewOut.AppendText(response.Content);
-                                        }));
-                                        workingLinks.Invoke(new Action(() =>
-                                        {
-                                            workingLinks.AppendText(link);
-                                            workingLinks.AppendText(Environment.NewLine);
-                                        }));
-                                        previewLinkOut.Invoke(new Action(() =>
-                                        {
-                                            previewLinkOut.ResetText();
-                                            previewLinkOut.AppendText("Previewing: " + link);
-                                        }));
+                                            previewOut.Invoke(new Action(() =>
+                                            {
+                                                previewOut.ResetText();
+                                                previewOut.AppendText(response.Content);
+                                            }));
+                                            workingLinks.Invoke(new Action(() =>
+                                            {
+                                                workingLinks.AppendText(link);
+                                                workingLinks.AppendText(Environment.NewLine);
+                                            }));
+                                            previewLinkOut.Invoke(new Action(() =>
+                                            {
+                                                previewLinkOut.ResetText();
+                                                previewLinkOut.AppendText("Previewing: " + link);
+                                            }));
+                                        }
                                     }
-                                } else if (response.StatusCode == System.Net.HttpStatusCode.Forbidden)
+                                    else if (RadioReg.Checked)
+                                    {
+                                        if (String.IsNullOrWhiteSpace(KeywordField.Text))
+                                        {
+                                            previewOut.Invoke(new Action(() =>
+                                            {
+                                                previewOut.ResetText();
+                                                previewOut.AppendText(response.Content);
+                                            }));
+                                            workingLinks.Invoke(new Action(() =>
+                                            {
+                                                workingLinks.AppendText(link);
+                                                workingLinks.AppendText(Environment.NewLine);
+                                            }));
+                                            previewLinkOut.Invoke(new Action(() =>
+                                            {
+                                                previewLinkOut.ResetText();
+                                                previewLinkOut.AppendText("Previewing: " + link);
+                                            }));
+                                        }
+                                        else
+                                        {
+                                            try
+                                            {
+                                                if (Regex.IsMatch(response.Content, @KeywordField.Text))
+                                                {
+                                                    previewOut.Invoke(new Action(() =>
+                                                    {
+                                                        previewOut.ResetText();
+                                                        previewOut.AppendText(response.Content);
+                                                    }));
+                                                    workingLinks.Invoke(new Action(() =>
+                                                    {
+                                                        workingLinks.AppendText(link);
+                                                        workingLinks.AppendText(Environment.NewLine);
+                                                    }));
+                                                    previewLinkOut.Invoke(new Action(() =>
+                                                    {
+                                                        previewLinkOut.ResetText();
+                                                        previewLinkOut.AppendText("Previewing: " + link);
+                                                    }));
+                                                }
+                                            }
+                                            catch (Exception pasteinexpr)
+                                            {
+                                                MessageBox.Show("An error has occured. View the error message below: \n\n" + pasteinexpr.ToString(), "Netflip", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                piflag = false;
+                                            }
+                                        }
+
+                                    }
+                                }
+                                else if (response.StatusCode == System.Net.HttpStatusCode.Forbidden)
                                 {
                                     PasteinButton.FlatAppearance.BorderColor = Color.Red;
                                     piflag = false;

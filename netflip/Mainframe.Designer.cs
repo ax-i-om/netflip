@@ -38,6 +38,9 @@ namespace netflip
             this.previewLinkOut = new System.Windows.Forms.TextBox();
             this.previewOut = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.RadioReg = new System.Windows.Forms.RadioButton();
+            this.RadioText = new System.Windows.Forms.RadioButton();
+            this.label1 = new System.Windows.Forms.Label();
             this.HelpButton = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.ThreadField = new System.Windows.Forms.TextBox();
@@ -50,9 +53,6 @@ namespace netflip
             this.PasteinButton = new System.Windows.Forms.Button();
             this.PasteallButton = new System.Windows.Forms.Button();
             this.RentryButton = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.panel1.SuspendLayout();
             this.panelChildForm.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -156,8 +156,8 @@ namespace netflip
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(54)))), ((int)(((byte)(64)))));
-            this.panel3.Controls.Add(this.radioButton2);
-            this.panel3.Controls.Add(this.radioButton1);
+            this.panel3.Controls.Add(this.RadioReg);
+            this.panel3.Controls.Add(this.RadioText);
             this.panel3.Controls.Add(this.label1);
             this.panel3.Controls.Add(this.HelpButton);
             this.panel3.Controls.Add(this.label4);
@@ -176,6 +176,40 @@ namespace netflip
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(175, 587);
             this.panel3.TabIndex = 1;
+            // 
+            // RadioReg
+            // 
+            this.RadioReg.AutoSize = true;
+            this.RadioReg.ForeColor = System.Drawing.Color.White;
+            this.RadioReg.Location = new System.Drawing.Point(12, 139);
+            this.RadioReg.Name = "RadioReg";
+            this.RadioReg.Size = new System.Drawing.Size(70, 21);
+            this.RadioReg.TabIndex = 31;
+            this.RadioReg.Text = "RegEx";
+            this.RadioReg.UseVisualStyleBackColor = true;
+            // 
+            // RadioText
+            // 
+            this.RadioText.AutoSize = true;
+            this.RadioText.Checked = true;
+            this.RadioText.ForeColor = System.Drawing.Color.White;
+            this.RadioText.Location = new System.Drawing.Point(13, 112);
+            this.RadioText.Name = "RadioText";
+            this.RadioText.Size = new System.Drawing.Size(91, 21);
+            this.RadioText.TabIndex = 30;
+            this.RadioText.TabStop = true;
+            this.RadioText.Text = "Plain Text";
+            this.RadioText.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.BackColor = System.Drawing.Color.White;
+            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(12, 437);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(150, 2);
+            this.label1.TabIndex = 29;
             // 
             // HelpButton
             // 
@@ -352,41 +386,6 @@ namespace netflip
             this.RentryButton.UseVisualStyleBackColor = false;
             this.RentryButton.Click += new System.EventHandler(this.RentryButton_Click);
             // 
-            // label1
-            // 
-            this.label1.BackColor = System.Drawing.Color.White;
-            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(12, 437);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(150, 2);
-            this.label1.TabIndex = 29;
-            // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Checked = true;
-            this.radioButton1.ForeColor = System.Drawing.Color.White;
-            this.radioButton1.Location = new System.Drawing.Point(13, 112);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(91, 21);
-            this.radioButton1.TabIndex = 30;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Plain Text";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            // 
-            // radioButton2
-            // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Enabled = false;
-            this.radioButton2.ForeColor = System.Drawing.Color.White;
-            this.radioButton2.Location = new System.Drawing.Point(12, 139);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(70, 21);
-            this.radioButton2.TabIndex = 31;
-            this.radioButton2.Text = "RegEx";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            // 
             // Mainframe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -431,8 +430,8 @@ namespace netflip
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox ThreadField;
         private System.Windows.Forms.Button HelpButton;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton RadioReg;
+        private System.Windows.Forms.RadioButton RadioText;
         private System.Windows.Forms.Label label1;
     }
 }
