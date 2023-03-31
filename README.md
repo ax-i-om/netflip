@@ -30,7 +30,8 @@ It is the end user's responsibility to obey all applicable local, state, and fed
 
 ### Features
 
-- [x] RegEx / PlainText filters
+- [x] ___
+- [ ] RegEx / PlainText filters
 - [ ] Include || Exclude result
 - [ ] Custom modules
 - [ ] Custom configurations
