@@ -6,7 +6,6 @@
     <a><img src="https://img.shields.io/badge/version-0.0.1-blue.svg" alt="Version 0.0.1"></a>
     <a href="https://discord.com/invite/uVWJUTufqf"><img src="https://img.shields.io/badge/discord-chat-blue.svg" alt="Discord"></a><br>
     Scrape paste sites for sensitive information.<br>
-    (Updated version of <a href="https://github.com/audioo/netflip-old">this.</a>)
 </a>
   </p><br>
 </p>
