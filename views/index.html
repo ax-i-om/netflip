@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Netflip</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- testing <link rel="stylesheet" href="../public/css/style.css" /> -->
+    <!-- prod --> <link rel="stylesheet" href="/css/style.css" />
+    <style>
+        p {
+            margin: 5px;
+            margin-right: 3em;
+        }
+        h3 {
+            margin: 5px;
+        }
+    </style>
+  </head>
+
+  <body>
+    <script type="text/javascript" src="/js/script.js"></script>
+    <div class="navbar">
+      <a class="active" href="http://localhost:6175"><i class="fas fa-home"></i>Netflip - Web Interface</a>
+      <a href="https://github.com/audioo/Netflip"><i class="fab fa-github"></i>https://github.com/audioo/netflip</a>
+    </div>
+
+    <h2 style="padding-left:1em;">Filtering</h2>
+    <form>
+      <button class="unselectedmodulebutton" id="pt" type="button">Plain-Text</button>
+      <button class="selectedmodulebutton" id="re" type="button">RegEx</button>
+      <input type="text" class="searchfield" spellcheck="false" autocomplete="off" id="filtertext" placeholder=" ([A-Z])\w+">
+    </form>
+    
+    <h2 style="padding-left: 1em;">Modules</h2>
+    <form>
+      <button class="selectedmodulebutton" id="rentry_co" type="button">RENTRY.CO</button>
+      <button class="unselectedmodulebutton" id="pasteall_org" type="button">PASTEALL.ORG</button>
+      <button class="unselectedmodulebutton" id="paste_in" type="button">PASTE.IN</button>
+      <button class="unselectedmodulebutton" id="paste_ee" type="button">PASTE.EE</button>
+    </form>
+
+    <h2 style="padding-left:1em;">Controls</h2>
+    <form>
+      <button class="selectedmodulebutton" id="start" type="button">Start</button>
+      <button class="unselectedmodulebutton" id="stop" type="button">Stop</button>
+      <button class="selectedmodulebutton" id="quit" type="button">Quit</button>
+      <button class="selectedmodulebutton" id="export" type="button">Export</button>
+    </form>
+
+    <h2 style="padding-left:1em;">Theme</h2>
+    <form>
+      <button class="unselectedmodulebutton" id="li" type="button">Light</button>
+      <button class="selectedmodulebutton" id="da" type="button">Dark</button>
+    </form>
+    <br>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script src="/js/app.js"></script>
+  </body>
+</html>
