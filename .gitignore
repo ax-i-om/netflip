@@ -11,13 +11,5 @@
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out
 
-# Gz files
-.gz
-
 # Dependency directories (remove the comment below to include it)
 # vendor/
-
-# etc
-/public/js/script.js.fiber.gz
-/public/js/app.js.fiber.gz
-/public/css/style.css.fiber.gz
