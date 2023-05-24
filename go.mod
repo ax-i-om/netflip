@@ -8,7 +8,9 @@ require (
 	atomicgo.dev/schedule v0.0.2 // indirect
 	github.com/containerd/console v1.0.3 // indirect
 	github.com/gookit/color v1.5.3 // indirect
+	github.com/gosuri/uilive v0.0.4 // indirect
 	github.com/lithammer/fuzzysearch v1.1.7 // indirect
+	github.com/mattn/go-isatty v0.0.19 // indirect
 	github.com/mattn/go-runewidth v0.0.14 // indirect
 	github.com/pterm/pterm v0.12.61 // indirect
 	github.com/rivo/uniseg v0.4.4 // indirect

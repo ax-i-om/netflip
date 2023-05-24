@@ -3,7 +3,7 @@
   <h1 align="center">Netflip</h1>
   <p align="center">
     <a href="https://goreportcard.com/report/github.com/audioo/netflip"><img src="https://goreportcard.com/badge/github.com/audioo/netflip" alt="Go Report Card"></a>
-    <a><img src="https://img.shields.io/badge/version-0.0.1-blue.svg" alt="Version 0.0.1"></a>
+    <a><img src="https://img.shields.io/badge/version-0.0.2-blue.svg" alt="Version 0.0.1"></a>
     <a href="https://discord.com/invite/uVWJUTufqf"><img src="https://img.shields.io/badge/discord-chat-blue.svg" alt="Discord"></a><br>
     Scrape paste sites for sensitive information.<br>
     (Updated version of <a href="https://github.com/audioo/netflip-old">this.</a>)
