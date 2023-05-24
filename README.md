@@ -1,5 +1,5 @@
 <p align="center">
-  <a><img src="./images/netflip.png" width=180 height="180"></a>
+  <a><img src="./images/icon.png" width=180 height="180"></a>
   <h1 align="center">Netflip</h1>
   <p align="center">
     <a href="https://goreportcard.com/report/github.com/audioo/netflip"><img src="https://goreportcard.com/badge/github.com/audioo/netflip" alt="Go Report Card"></a>
@@ -23,26 +23,19 @@
 
 ### About
 
-Netflip is a tool that enables a user/individual to scrape paste sites in bulk for sensitive information. 
+Netflip is a tool that enables a user/individual to scrape paste sites in bulk for sensitive information. This is a revisioned version of [this repository](https://github.com/ax-i-om/netflip-old), designed to be lightweight and cross-platform.
 
 ### Disclaimer
 
 It is the end user's responsibility to obey all applicable local, state, and federal laws. Developers assume no liability and are not responsible for any misuse or damage caused by this program. By using Netflip, you agree to the previous statements.
 
-### Features
+### Todo
 
-- [x] ___
-- [ ] RegEx / PlainText filters
-- [ ] Include || Exclude result
 - [ ] Custom modules
 - [ ] Custom configurations
-- [ ] Logs
 - [ ] Export results as ...
 - [ ] Proxylist support
 - [ ] Concurrent searching
-- [ ] Cross platform
-- [ ] CLI
-- [ ] GUI
 
 ### Preview
 
