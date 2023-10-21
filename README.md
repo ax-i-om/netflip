@@ -1,11 +1,10 @@
 <p align="center">
   <a><img src="./netflip/Resources/LogoMakr-5e31Wu.png" width=180 height="180"></a>
-  <h1 align="center">Netflip (OLD)</h1>
+  <h1 align="center">Netflip</h1>
   <p align="center">
     <a><img src="https://img.shields.io/badge/license-MIT-green.svg" alt="s"></a>
     <a><img src="https://img.shields.io/badge/version-0.2.4-blue.svg" alt="s"></a><br>
     Scrape paste sites for sensitive information.<br>
-    This project has been moved to <a href="https://github.com/audioo/netflip">this repo.</a><br>
   <a href="https://github.com/maraudery/netflip/releases/latest">Download</a><br><br>
     <a><img src="./demo.png" width="800em"></a><br>
     Using a VPN is highly recommended<br><br>
